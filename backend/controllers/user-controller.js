@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
                             })
                         })
                 })
-            }
+            })
         })
     res.send("register")
 })
