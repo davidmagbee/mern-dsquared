@@ -8,7 +8,7 @@ const Task = require("../models/Task")
 router.post("/", (req, res) => {
     const { name, email, password } = req.body
 
-    if(!email || !password){
+    if(!name || !email || !password){
         return(res.status(400).json({msg: "please fill out form"}))
     }
 
@@ -19,6 +19,7 @@ router.post("/", (req, res) => {
             }
 
             const newUser = new User({
+                name,
                 email,
                 password
             })
@@ -31,7 +32,8 @@ router.post("/", (req, res) => {
                         .then(user => {
                             res.json({
                                 user: {
-                                    id: user._id,
+                                    id: user.id,
+                                    name: user.name,
                                     email: user.email
                                 }
                             })
@@ -39,7 +41,6 @@ router.post("/", (req, res) => {
                 })
             })
         })
-    res.send("register")
 })
 
 
