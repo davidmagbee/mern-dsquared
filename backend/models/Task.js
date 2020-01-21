@@ -14,4 +14,4 @@ const TaskSchema = new Schema({
 
 const Task = mongoose.model("Tasks", TaskSchema);
 
-module.exports = Task;const mongoose = require('../db/connection');
+module.exports = Task;
