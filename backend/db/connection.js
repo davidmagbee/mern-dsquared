@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = Promise;
 
-const URI = "mongodb://localhost/Dsquared";
+const URI = "mongodb+srv://davidL:Yikapav3!@todo-qrono.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })
