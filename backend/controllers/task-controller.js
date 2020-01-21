@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     User.find({ _id: req.body.user._id }).then(user => {
         Task.create(req.body.task.title).then(task => {
-            user[0].cookbooks.push(task._id)
+            user[0].tasks.push(task._id)
             task.user = user._id
 
             user[0].save()
