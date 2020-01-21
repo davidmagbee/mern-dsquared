@@ -6,7 +6,7 @@ const TaskSchema = new Schema({
     complete: Boolean,
     user: 
         {
-            title: Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Users"
         }
 });

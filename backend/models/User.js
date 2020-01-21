@@ -1,7 +1,7 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
     email: String,
     tasks: [
         {
@@ -11,6 +11,6 @@ const UserSchema = new Schema({
     ]
 });
 
-const User = mongoose.model("Users", UserSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User

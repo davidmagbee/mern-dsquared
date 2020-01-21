@@ -36,3 +36,5 @@ router.put("/", (req, res) => {
 router.delete("/", (req, res) => {
     Task.findOneAndDelete({ _id: req.body.user._id }).then(task => res.json(task))
 })
+
+module.exports = router
