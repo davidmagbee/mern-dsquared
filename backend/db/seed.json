@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Make a git repo and share link via issue",
+        "complete": true
+    },
+    {
+        "title": "npm install express",
+        "complete": true 
+    },
+    {
+        "title": "npm install mongoose",
+        "complete": true
+    },
+    {
+        "title": "Complete Express setup",
+        "complete": false
+    }
+]
