@@ -1,6 +1,8 @@
 # mern-dsquared
 GA MERN Lab: Express on the back, React on the front. 
 
+A lab for exploring building a full-stack MERN app
+
 Get ready to build your first MERN app! For this lab, your goal is to build a
 simple MERN app with Express on the back-end and React on the front-end. Your
 app should have one and only one model!
