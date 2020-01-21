@@ -11,7 +11,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -31,4 +34,5 @@
     "url": "https://github.com/macuser413/mern-dsquared/issues"
   },
   "homepage": "https://github.com/macuser413/mern-dsquared#readme"
+
 }
