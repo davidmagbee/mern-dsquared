@@ -2,11 +2,6 @@ const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    name: {
-        firstName: String,
-        lastName: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,

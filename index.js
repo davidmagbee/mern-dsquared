@@ -6,8 +6,11 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
 const taskController = require('./backend/controllers/task-controller');
-
+const userController = require('./backend/controllers/user-controller')
+//use routes
 app.use('/task', taskController);
+app.use('/user', userController)
+
 
 app.get('/', (req, res) => {
     res.redirect('/tasks')
