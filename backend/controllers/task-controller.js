@@ -24,7 +24,15 @@ router.post("/", (req, res) => {
 
 router.put("/", (req, res) => {
     User.find({ _id: req.body.user._id }).then(user => {
-        Task.find({ _id: })
-    }
+        Task.findOneAndUpdate({ _id: req.body.task._id }, req.body.task, { new: true }).then(task => {
+            user[0].save()
+            task.save()
 
+            res.json(user)
+        })
+    })
+})
+
+router.delete("/", (req, res) => {
+    Task.findOneAndDelete({ _id: req.body.user._id }).then(task => res.json(task))
 })
