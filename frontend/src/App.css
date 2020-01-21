@@ -1,0 +1,141 @@
+.todo-list {
+  width: 80%;
+  margin: auto;
+}
+.task-box {
+  width: 100%;
+  margin: 2em auto;
+  border-radius: 25px;
+}
+.task-main {
+  width: 100%;
+  padding: 1em;
+  color: black;
+  font-size: large;
+  border-radius: 25px;
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 1em;
+  font-weight: bold;
+}
+.task-icons > i {
+  margin-left: 1em;
+}
+.task > p {
+  margin: 0px 0px 0px 1em;
+}
+.sub-task > p {
+  margin: 0px 0px 0px 1em;
+}
+.input-box {
+  border: 1px solid black;
+  height: 40px;
+  width: 550px;
+  font-size: 25px;
+}
+
+.input-form {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.sub-box {
+  width: 80%;
+  margin: 1em 0em 0em auto;
+}
+
+.sub-main {
+  width: 100%;
+  padding: 1em;
+  color: black;
+  font-size: large;
+  border-radius: 25px;
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 1em;
+  font-weight: bold;
+}
+/* .sub-task-list {
+  width: 80%;
+  margin: auto;
+} */
+.sub-form {
+  border: hidden;
+  margin: auto auto auto 1em;
+}
+
+.submit-box {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  margin-left: 1vw;
+  border: 3px solid white;
+  padding: 5px 10px 5px 10px;
+}
+
+.mark-off {
+  text-decoration: line-through;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: beige;
+  /* min-width: 100px; */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 5px;
+  margin: 0px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content li {
+  display: flex;
+  padding: 0px;
+  text-decoration: none;
+  list-style: none;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+.color-list-item {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 5px;
+}
