@@ -19,6 +19,7 @@ class App extends Component {
 
 
   //this adds each new task to the this.state.toDo array 
+  //This will need to be the post request
   addString = (e) => {
     e.preventDefault()
     let task = {
@@ -41,6 +42,7 @@ class App extends Component {
   }
 
   //this pulls the deleted task from the toDo array
+  //this will need to be delete 
   deleteTask = (e) => {
     let copyArray = this.state.toDo.slice(0)
     copyArray.splice(e, 1)
@@ -50,6 +52,7 @@ class App extends Component {
   }
 
   //this marks through selected task
+  //this will need to be for a put request to change "completed" to true
   markThrough = (e) => {
     let paragraph = e.target.nextSibling
     if(paragraph.classList.contains("mark-off")) {
