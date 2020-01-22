@@ -1,47 +1,56 @@
-const express = require("express")
-const router = express.Router()
-const bcrypt = require("bcryptjs")
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
-const User = require("../models/User")
-const Task = require("../models/Task")
+const User = require("../models/User");
+const Task = require("../models/Task");
+
+router.get("/", (req, res) => {
+  User.find().then(users => res.json(users));
+});
+
 
 router.post("/", (req, res) => {
-    const { name, email, password } = req.body
+  const { name, email, password } = req.body;
 
-    if(!name || !email || !password){
-        return(res.status(400).json({msg: "please fill out form"}))
+  if (!name || !email || !password) {
+    return res.status(400).json({ msg: "please fill out form" });
+  }
+
+  User.findOne({ email: email }).then(user => {
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
     }
 
-    User.findOne({ email: email })
-        .then(user => {
-            if(user){
-                return res.status(400).json({msg: "User already exists"})
-            }
+    const newUser = new User({
+      name,
+      email,
+      password
+    });
 
-            const newUser = new User({
-                name,
-                email,
-                password
-            })
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) throw err;
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser.save().then(user => {
+          jwt.sign({ id: user.id }, config.get("jwtSecret"), (err, token) => {
+            if (err) throw err;
+            res.json({
+              token,
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email
+              }
+            });
+          });
+        });
+      });
+    });
+  });
+});
 
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if(err) throw err
-                    newUser.password = hash
-                    newUser.save()
-                        .then(user => {
-                            res.json({
-                                user: {
-                                    id: user.id,
-                                    name: user.name,
-                                    email: user.email
-                                }
-                            })
-                        })
-                })
-            })
-        })
-})
-
-
-module.exports = router
+module.exports = router;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ToDoForm from './components/ToDoForm'
 import ToDoList from './components/ToDoList'
 import './App.css';
+const axios = require('axios').default
+
 
 class App extends Component { 
   constructor(){
@@ -14,6 +16,9 @@ class App extends Component {
     this.markThrough = this.markThrough.bind(this)
   }
 
+
+
+  //this adds each new task to the this.state.toDo array 
   addString = (e) => {
     e.preventDefault()
     let task = {
@@ -28,12 +33,14 @@ class App extends Component {
     })
   }
 
+  //this simply holds the value in the form 
   handleChange = (e) => {
     this.setState({
       value: e.target.value
     })
   }
 
+  //this pulls the deleted task from the toDo array
   deleteTask = (e) => {
     let copyArray = this.state.toDo.slice(0)
     copyArray.splice(e, 1)
@@ -42,6 +49,7 @@ class App extends Component {
     })
   }
 
+  //this marks through selected task
   markThrough = (e) => {
     let paragraph = e.target.nextSibling
     if(paragraph.classList.contains("mark-off")) {
@@ -58,6 +66,12 @@ class App extends Component {
   }
 
   render() {
+
+    //on load, pull all the tasks from database and place in this.state.toDo
+    axios.get('http://localhost:5000/task').then(res => {
+      console.log(res.data)
+    })
+
     return(
       <div>
         <ToDoForm {...this.state} add={this.addString} change={this.handleChange} />

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import SubTaskList from "../SubTaskList/SubTaskList";
-// import SubForm from "../SubForm/SubForm";
 import "../App.css";
 
 class Task extends Component {
@@ -97,7 +95,6 @@ class Task extends Component {
                 {colors}
               </ul>
             </div>
-            {/* <i className="fas fa-plus" onClick={this.subForm}></i> */}
             <i
               className="fas fa-times"
               onClick={() => this.props.onClick(this.props.index)}
