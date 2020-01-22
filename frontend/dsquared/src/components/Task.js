@@ -12,7 +12,7 @@ class Task extends Component {
     };
   }
 
-  deleteTask = (e) => {
+  deleteTask = e => {
     console.log(e);
     let copyArray = this.state.subItem.slice(0);
     console.log(copyArray);
@@ -21,9 +21,9 @@ class Task extends Component {
     this.setState({
       subItem: copyArray
     });
-  }
+  };
 
-  markThrough = (e) => {
+  markThrough = e => {
     let paragraph = e.target.nextSibling;
     if (paragraph.classList.contains("mark-off")) {
       paragraph.classList.remove("mark-off");
@@ -36,20 +36,19 @@ class Task extends Component {
     } else {
       e.target.classList += " fa-square";
     }
-  }
+  };
 
   dropDown = () => {
     let dropdown = this.myRef.current;
     dropdown.classList.toggle("show");
   };
 
-  changeColor = (color) => {
+  changeColor = color => {
     this.setState({
       selectedColor: color
     });
-  }
+  };
   render() {
-
     let colors = [
       "white",
       "#FDDAE3",

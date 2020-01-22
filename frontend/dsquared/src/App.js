@@ -23,6 +23,7 @@ class App extends Component {
       title: this.state.value,
       complete: false
     };
+<<<<<<< HEAD
     let newArray = this.state.toDo.slice();
     newArray.push(task);
     this.setState({
@@ -36,6 +37,22 @@ class App extends Component {
       toDo: array
     })
   }
+=======
+    axios
+      .post("http://localhost:5000/task", {
+        task
+      })
+      .then(res => {
+        console.log(res.data);
+      });
+    // let newArray = this.state.toDo.slice();
+    // newArray.push(task);
+    // this.setState({
+    //   toDo: newArray,
+    //   value: ""
+    // });
+  };
+>>>>>>> ff51866b903b5afc2a9b2f1a59e15b6203e5b6f9
 
   //this simply holds the value in the form
   handleChange = e => {

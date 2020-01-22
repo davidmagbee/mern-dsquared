@@ -3,7 +3,7 @@ import Task from "./Task";
 import "../App.css";
 
 function ToDoList(props) {
-    let children 
+  let children;
   if (props.list) {
     children = props.list.map((el, i) => {
       return (
