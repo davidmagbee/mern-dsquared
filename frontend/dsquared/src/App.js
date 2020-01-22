@@ -14,7 +14,24 @@ class App extends Component {
     this.deleteTask = this.deleteTask.bind(this);
     this.markThrough = this.markThrough.bind(this);
   }
-
+  componentDidMount(){
+    axios
+      .get("http://localhost:5000/task")
+      .then(res => {
+        let array = [];  
+        res.data.map(el => {
+          let obj = {
+            id: el._id,
+            title: el.title,
+            complete: el.complete
+          };
+          array.push(obj);
+        });
+        return array
+      }).then(array => {
+        this.setToDo(array)
+      })
+  }
   //this adds each new task to the this.state.toDo array
   //This will need to be the post request
   addString = e => {
@@ -23,36 +40,39 @@ class App extends Component {
       title: this.state.value,
       complete: false
     };
-<<<<<<< HEAD
-    let newArray = this.state.toDo.slice();
-    newArray.push(task);
-    this.setState({
-      toDo: newArray,
-      value: ""
-    });
+    axios
+      .post("http://localhost:5000/task", 
+        task
+      )
+      .then(() => {
+        axios.get("http://localhost:5000/task")
+        .then(res => {
+          let array = [];  
+          res.data.map(el => {
+            let obj = {
+              id: el._id,
+              title: el.title,
+              complete: el.complete
+            };
+            array.push(obj);
+          });
+          return array
+        }).then(array => {
+          this.setToDo(array)
+          this.setState({
+            value: ''
+          })
+        })
+      });
   };
 
   setToDo = (array) => {
+    console.log(array)
     this.setState({
       toDo: array
+      // value: ''
     })
   }
-=======
-    axios
-      .post("http://localhost:5000/task", {
-        task
-      })
-      .then(res => {
-        console.log(res.data);
-      });
-    // let newArray = this.state.toDo.slice();
-    // newArray.push(task);
-    // this.setState({
-    //   toDo: newArray,
-    //   value: ""
-    // });
-  };
->>>>>>> ff51866b903b5afc2a9b2f1a59e15b6203e5b6f9
 
   //this simply holds the value in the form
   handleChange = e => {
@@ -64,11 +84,7 @@ class App extends Component {
   //this pulls the deleted task from the toDo array
   //this will need to be delete
   deleteTask = e => {
-    let copyArray = this.state.toDo.slice(0);
-    copyArray.splice(e, 1);
-    this.setState({
-      toDo: copyArray
-    });
+    console.log(e)
   };
 
   //this marks through selected task
@@ -89,23 +105,6 @@ class App extends Component {
   };
 
   render() {
-    
-    //on load, pull all the tasks from database and place in this.state.toDo
-    axios
-      .get("http://localhost:5000/task")
-      .then(res => {
-        let array = [];  
-        res.data.map(el => {
-          let obj = {
-            title: el.title,
-            complete: el.complete
-          };
-          array.push(obj);
-        });
-        return array
-      }).then(array => {
-        this.setToDo(array)
-      })
 
     return (
       <div>
