@@ -11,7 +11,6 @@ router.get("/", (req, res) => {
   User.find().then(users => res.json(users));
 });
 
-
 router.post("/", (req, res) => {
   const { name, email, password } = req.body;
 
