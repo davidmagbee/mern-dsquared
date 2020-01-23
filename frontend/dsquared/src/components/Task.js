@@ -24,18 +24,18 @@ class Task extends Component {
   };
 
   markThrough = e => {
-    let paragraph = e.target.nextSibling;
-    if (paragraph.classList.contains("mark-off")) {
-      paragraph.classList.remove("mark-off");
-    } else {
-      paragraph.classList += " mark-off";
-    }
-    if (e.target.classList.contains("fa-square")) {
-      e.target.classList.remove("fa-square");
-      e.target.classList += " fa-check-square";
-    } else {
-      e.target.classList += " fa-square";
-    }
+    // let paragraph = e.target.nextSibling;
+    // if (paragraph.classList.contains("mark-off")) {
+    //   paragraph.classList.remove("mark-off");
+    // } else {
+    //   paragraph.classList += " mark-off";
+    // }
+    // if (e.target.classList.contains("fa-square")) {
+    //   e.target.classList.remove("fa-square");
+    //   e.target.classList += " fa-check-square";
+    // } else {
+    //   e.target.classList += " fa-square";
+    // }
   };
 
   dropDown = () => {
@@ -84,8 +84,8 @@ class Task extends Component {
       >
         <div className="task-main">
           <div className="task">
-            <i className="far fa-square" onClick={e => this.props.mark(e)}></i>
-            <p>{this.props.task.title}</p>
+            <i className={this.props.task.complete ? 'far fa-check-square' : 'far fa-square'} onClick={(() => this.props.mark(this.props.index))}></i>
+            <p className={this.props.task.complete ? 'mark-off' : ''}>{this.props.task.title}</p>
           </div>
           <div className="task-icons">
             <div className="dropdown">

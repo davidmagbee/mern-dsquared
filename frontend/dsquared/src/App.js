@@ -12,8 +12,6 @@ class App extends Component {
       toDo: [],
       value: ""
     };
-    this.deleteTask = this.deleteTask.bind(this);
-    this.markThrough = this.markThrough.bind(this);
   }
   componentDidMount(){
     axios
@@ -115,19 +113,36 @@ class App extends Component {
   //this marks through selected task
   //this will need to be for a put request to change "completed" to true
   markThrough = e => {
-    let paragraph = e.target.nextSibling;
-    if (paragraph.classList.contains("mark-off")) {
-      paragraph.classList.remove("mark-off");
-    } else {
-      paragraph.classList += " mark-off";
-    }
-    if (e.target.classList.contains("fa-square")) {
-      e.target.classList.remove("fa-square");
-      e.target.classList += " fa-check-square";
-    } else {
-      e.target.classList += " fa-square";
-    }
-  };
+    let array = this.state.toDo.slice(0)
+    let id = array[e].id
+    let complete = array[e].complete
+    console.log(id)
+    console.log(complete, !complete)
+    axios.put(`http://localhost:5000/task/${id}`, {
+      complete: !complete
+    })
+      .then(() => {
+      axios.get("http://localhost:5000/task")
+      .then(res => {
+        let array = [];  
+        res.data.forEach(el => {
+          let obj = {
+            id: el._id,
+            title: el.title,
+            complete: el.complete
+          };
+          array.push(obj);
+        });
+        return array
+      })
+      .then(array => {
+        this.setToDo(array)
+        this.setState({
+          value: ''
+        })
+      })
+  })
+  }
 
   render() {
 
