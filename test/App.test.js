@@ -2,6 +2,7 @@ const should = require("chai").should();
 const expect = require("chai").expect;
 const supertest = require("supertest");
 const api = supertest("http://localhost:5000");
+const Task = require('../backend/models/Task')
 
 describe("GET /task", () => {
     before(done => {
@@ -61,7 +62,7 @@ describe("POST /task", () => {
     it("Should add a task to the task collection and return the task", done => {
         api
             .get('/task')
-            .set("Accept", 'application')
+            .set("Accept", 'application/json')
             .end((err, res) => {
                 expect(res.body[res.body.length - 1]).to.include({
                     _id: res.body[res.body.length - 1]._id,
@@ -74,6 +75,24 @@ describe("POST /task", () => {
     })
 })
 
-describe("PUT /task/:id", () => {
-    it("Should return the updated object")
+describe("PUT/:id /task", () => {
+    it("Should return the updated object", done => {
+        let task = new Task({ title: "Mocha Test", complete: false })
+        task.save((err, res) => {
+            api
+                .put('/task/' + res.id)
+                .send({ title: "Mocha test works!", complete: true})
+                .end((err, res) => {
+                    console.log(res.body)
+                    // res.should.have.status(200)
+                    res.body.should.be.a('object')
+                    res.body.should.have.property('_id').eql(res.body._id)
+                    done()
+                })
+        })
+    })
+})
+
+describe("DELETE /task/:id", () => {
+
 })

@@ -24,23 +24,22 @@ router.post("/", (req, res) => {
 // })
 
 router.put("/:id", (req, res) => {
-    console.log(req.params.id)
+  // console.log(req.params.id);
   // User.find({ _id: req.body.user._id }).then(user => {
   Task.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).then(
     task => {
       // user[0].save()
       task.save()
-      console.log(res.json(task))
-      res.json(task);
+      res.json(task)
     }
   );
 });
 // })
 
 router.delete("/:id", (req, res) => {
-//   console.log(req.body);
-  console.log(req.params.id)
-  Task.findOneAndRemove({ _id: req.params.id}).then(task => res.json(task));
+  //   console.log(req.body);
+  console.log(req.params.id);
+  Task.findOneAndRemove({ _id: req.params.id }).then(task => res.json(task));
 });
 
 module.exports = router;

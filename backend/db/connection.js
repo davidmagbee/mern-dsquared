@@ -4,9 +4,10 @@ const jwt = require("jsonwebtoken");
 
 mongoose.Promise = Promise;
 
+
 const db = config.get("mongoURI");
 // const mongoURI = "mongodb+srv://davidL:david123@todo-qrono.mongodb.net/test?retryWrites=true&w=majority";
-
+mongoose.connect(db, { useFindAndModify: false })
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(instance =>
