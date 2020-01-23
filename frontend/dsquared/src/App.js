@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ToDoForm from "./components/ToDoForm";
 import ToDoList from "./components/ToDoList";
 import "./App.css";
+// import Task from "./components/Task";
 const axios = require("axios").default;
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
       .get("http://localhost:5000/task")
       .then(res => {
         let array = [];  
-        res.data.map(el => {
+        res.data.forEach(el => {
           let obj = {
             id: el._id,
             title: el.title,
@@ -48,7 +49,7 @@ class App extends Component {
         axios.get("http://localhost:5000/task")
         .then(res => {
           let array = [];  
-          res.data.map(el => {
+          res.data.forEach(el => {
             let obj = {
               id: el._id,
               title: el.title,
@@ -84,8 +85,32 @@ class App extends Component {
   //this pulls the deleted task from the toDo array
   //this will need to be delete
   deleteTask = e => {
-    console.log(e)
-  };
+    let array = this.state.toDo.slice(0)
+    let id = array[e].id
+    // console.log(id)
+    axios.delete(`http://localhost:5000/task/${id}`)
+      .then(() => {
+      axios.get("http://localhost:5000/task")
+      .then(res => {
+        let array = [];  
+        res.data.forEach(el => {
+          let obj = {
+            id: el._id,
+            title: el.title,
+            complete: el.complete
+          };
+          array.push(obj);
+        });
+        return array
+      })
+      .then(array => {
+        this.setToDo(array)
+        this.setState({
+          value: ''
+        })
+      })
+  })
+  }
 
   //this marks through selected task
   //this will need to be for a put request to change "completed" to true

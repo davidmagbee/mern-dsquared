@@ -36,8 +36,10 @@ router.put("/", (req, res) => {
 });
 // })
 
-router.delete("/", (req, res) => {
-  Task.findOneAndDelete({ _id: req.body._id }).then(task => res.json(task));
+router.delete("/:id", (req, res) => {
+//   console.log(req.body);
+  console.log(req.params.id)
+  Task.findOneAndRemove({ _id: req.params.id}).then(task => res.json(task));
 });
 
 module.exports = router;

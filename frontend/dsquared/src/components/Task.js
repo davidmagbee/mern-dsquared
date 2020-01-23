@@ -88,9 +88,9 @@ class Task extends Component {
             <p>{this.props.task.title}</p>
           </div>
           <div className="task-icons">
-            <div class="dropdown">
-              <i class="fas fa-chevron-down" onClick={this.dropDown}></i>
-              <ul id="dropDown" ref={this.myRef} class="dropdown-content">
+            <div className="dropdown">
+              <i className="fas fa-chevron-down" onClick={this.dropDown}></i>
+              <ul id="dropDown" ref={this.myRef} className="dropdown-content">
                 {colors}
               </ul>
             </div>
